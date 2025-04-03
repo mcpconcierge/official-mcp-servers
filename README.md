@@ -440,7 +440,7 @@ python -m mcp_server_git
 
 Follow [these](https://docs.astral.sh/uv/getting-started/installation/) instructions to install `uv` / `uvx` and [these](https://pip.pypa.io/en/stable/installation/) to install `pip`.
 
-### Using an MCP Client
+## Using an MCP Client for Mac and Linux
 However, running a server on its own isn't very useful, and should instead be configured into an MCP client. For example, here's the Claude Desktop configuration to use the above server:
 
 ```json
@@ -481,6 +481,50 @@ Additional examples of using the Claude Desktop as an MCP client might look like
   }
 }
 ```
+
+## Using an MCP Client on Windows
+Here's the Claude Desktop configuration for Windows, replace Windows_User_Name with Your actual user name :
+
+```json
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [ "-y", "@modelcontextprotocol/server-filesystem", "C:\\Users\\Windows_User_Name\\Desktop", "H:\\MyProjects\\MCP-Servers"
+      ]
+    }
+  }
+}
+```
+
+Additional examples of using the Claude Desktop as an MCP client might look like:
+
+```json
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/allowed/files"]
+    },
+    "git": {
+      "command": "uvx",
+      "args": ["mcp-server-git", "--repository", "path/to/git/repo"]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "<YOUR_TOKEN>"
+      }
+    },
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost/mydb"]
+    }
+  }
+}
+```
+
 
 ## 🛠️ Creating Your Own Server
 
